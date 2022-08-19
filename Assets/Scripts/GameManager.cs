@@ -22,10 +22,15 @@ public class GameManager : MonoBehaviour
     private float _spawnRate = 1.0f;
     private int _score;
 
+    private AudioSource _backgroundMusic;
+
+    public Slider volumeSlider;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _backgroundMusic = GetComponent<AudioSource>();
+        UpdateVolume();
     }
 
     // Update is called once per frame
@@ -52,6 +57,11 @@ public class GameManager : MonoBehaviour
     public void UpdateLives()
     {
         livesText.text = "Lives: " + lives;
+    }
+
+    public void UpdateVolume()
+    {
+        _backgroundMusic.volume = volumeSlider.value;
     }
 
     public void GameOver()
