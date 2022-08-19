@@ -50,7 +50,12 @@ public class Target : MonoBehaviour
     {
         Destroy(gameObject);
 
-        if (gameObject.CompareTag("Good"))
+        if (gameObject.CompareTag("Good") && _gameManager.lives > 0)
+        {
+            _gameManager.DecreaseLives();
+        }
+
+        if (_gameManager.lives == 0)
         {
             _gameManager.GameOver();
         }
