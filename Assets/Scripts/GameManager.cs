@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
 
     public Slider volumeSlider;
 
+    public GameObject pausedImage;
+
+    public bool isPaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +40,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space) && isGameActive)
+        {
+            TogglePaused();
+        }
     }
 
     IEnumerator SpawnTarget()
@@ -96,5 +103,15 @@ public class GameManager : MonoBehaviour
             lives -= 1;
             UpdateLives();
         }
+    }
+
+    void TogglePaused()
+    {
+        isPaused = !isPaused;
+        pausedImage.SetActive(isPaused);
+        if (isPaused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 }
