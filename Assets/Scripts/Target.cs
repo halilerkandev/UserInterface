@@ -36,9 +36,9 @@ public class Target : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        if (_gameManager.isGameActive && _gameManager.isPaused == false)
+        if (_gameManager.isGameActive && _gameManager.isPaused == false && Input.GetMouseButton(0))
         {
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, gameObject.transform.rotation);

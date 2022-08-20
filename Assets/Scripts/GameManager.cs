@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused = false;
 
+    public GameObject trailMaker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
     {
         restartButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
+        trailMaker.gameObject.SetActive(false);
         isGameActive = false;
     }
 
@@ -94,6 +97,7 @@ public class GameManager : MonoBehaviour
         UpdateLives();
 
         titleScreen.gameObject.SetActive(false);
+        trailMaker.gameObject.SetActive(true);
     }
 
     public void DecreaseLives()
@@ -110,8 +114,14 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
         pausedImage.SetActive(isPaused);
         if (isPaused)
+        {
             Time.timeScale = 0;
+            trailMaker.gameObject.SetActive(false);
+        }
         else
+        {
             Time.timeScale = 1;
+            trailMaker.gameObject.SetActive(true);
+        }
     }
 }
